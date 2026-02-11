@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BlogList from "./pages/BlogList";
 import CreateBlog from "./pages/CreateBlog";
 import EditBlog from "./pages/EditBlog";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import "./App.css";
 
 function App() {
   return (

@@ -1,63 +1,70 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
-    try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", form);
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/blogs");
-    } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
-    }
+    // Add your login logic here
+    console.log("Login:", { email, password });
+    navigate("/blogs");
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Login</h2>
-      {error && <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "15px" }}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-          />
+    <div className="min-h-screen bg-gradient-to-br from-warmCream via-warmPeach/20 to-warmCream flex items-center justify-center p-6">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-12 animate-slideUp">
+          <div className="inline-block mb-4">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-warmTerra to-warmSienna flex items-center justify-center shadow-xl">
+              <span className="text-white text-2xl font-serif italic">B</span>
+            </div>
+          </div>
+          <h1 className="font-display text-4xl text-warmBrown mb-2">Welcome back</h1>
+          <p className="text-warmBrown/60">Continue your writing journey</p>
         </div>
-        <div style={{ marginBottom: "15px" }}>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-          />
+
+        <div className="bg-white rounded-3xl shadow-warm p-8 animate-slideUp" style={{ animationDelay: '0.1s' }}>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium text-warmBrown/70 mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-warmBrown/10 bg-warmCream/30 focus:bg-white focus:border-warmTerra focus:ring-2 focus:ring-warmTerra/20 outline-none transition-all"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-warmBrown/70 mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-warmBrown/10 bg-warmCream/30 focus:bg-white focus:border-warmTerra focus:ring-2 focus:ring-warmTerra/20 outline-none transition-all"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <button 
+              type="submit"
+              className="w-full py-3 bg-warmTerra text-white rounded-xl font-medium hover:bg-warmSienna transition-all hover:shadow-lg transform hover:-translate-y-0.5 mt-6"
+            >
+              Sign in
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <Link to="/register" className="text-sm text-warmBrown/60 hover:text-warmTerra transition-colors">
+              Don't have an account? <span className="font-medium">Create one</span>
+            </Link>
+          </div>
         </div>
-        <button type="submit" style={{ width: "100%", padding: "10px", fontSize: "16px" }}>
-          Login
-        </button>
-      </form>
-      <p style={{ marginTop: "15px" }}>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
+      </div>
     </div>
   );
 };

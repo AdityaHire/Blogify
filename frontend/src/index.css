@@ -1,13 +1,57 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer utilities {
+  .bg-warmCream {
+    background-color: #FAF7F2;
+  }
+  
+  .bg-warmPeach {
+    background-color: #F4E4D7;
+  }
+  
+  .bg-warmTerra {
+    background-color: #C77D58;
+  }
+  
+  .bg-warmSienna {
+    background-color: #A85E3A;
+  }
+  
+  .bg-warmBrown {
+    background-color: #3D2E27;
+  }
+  
+  .text-warmCream {
+    color: #FAF7F2;
+  }
+  
+  .text-warmPeach {
+    color: #F4E4D7;
+  }
+  
+  .text-warmTerra {
+    color: #C77D58;
+  }
+  
+  .text-warmSienna {
+    color: #A85E3A;
+  }
+  
+  .text-warmBrown {
+    color: #3D2E27;
+  }
+  
+  .border-warmBrown {
+    border-color: #3D2E27;
+  }
+  
+  .border-warmTerra {
+    border-color: #C77D58;
+  }
+  
+  .shadow-warm {
+    box-shadow: 0 10px 40px rgba(61, 46, 39, 0.08);
+  }
 }
